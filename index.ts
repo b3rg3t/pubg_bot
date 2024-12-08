@@ -1,4 +1,4 @@
-require("./server.js");
+require("./server.ts");
 const { Client, Events, SlashCommandBuilder } = require("discord.js");
 
 const token = process.env.TOKEN;
