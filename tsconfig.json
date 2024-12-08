@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-  "target": "ES2022",
+    "baseUrl": "./",
+    "target": "ES2022",
     "module": "CommonJS",
     "moduleResolution": "node",
     "strict": true,
@@ -9,6 +10,8 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "outDir": "./dist" /* Skip type checking all .d.ts files. */
   },
