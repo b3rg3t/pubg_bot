@@ -1,5 +1,6 @@
-require("./server.ts");
-const { Client, Events, SlashCommandBuilder } = require("discord.js");
+import "./server.tsx"
+import 'dotenv/config';
+import { Client, Events, SlashCommandBuilder } from "discord.js";
 
 const token = process.env.TOKEN;
 
@@ -12,11 +13,15 @@ client.once(Events.ClientReady, (c) => {
     .setName("ping")
     .setDescription("Replies with pong!");
 
-  client.application.commands.create(ping);
+  if (client.application) {
+    client.application.commands.create(ping);
+  }
 });
 
 client.on(Events.InteractionCreate, (interaction) => {
+  // @ts-ignore
   if (interaction.commandName === "ping") {
+    // @ts-ignore
     interaction.reply("Pong!");
   }
 });
