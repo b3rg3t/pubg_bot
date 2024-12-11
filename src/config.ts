@@ -1,4 +1,4 @@
 const KRAFTON_BASE_URL =
-  "https://api.pubg.com/shards/$platform/players?filter[playerNames]=$playerName";
+  "https://api.pubg.com/shards/steam";
 
 export = { KRAFTON_BASE_URL };
