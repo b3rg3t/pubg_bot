@@ -1,4 +1,6 @@
-import "./server.tsx";
+import "../src/controllers/PokmonController.tsx"
+import "../src/controllers/KraftonController.tsx"
+import "../src/controllers/TestController.tsx"
 import "dotenv/config";
 import { Client, Events, SlashCommandBuilder } from "discord.js";
 import { SlashCommands } from "./models/enums/slashCommands.js";
@@ -35,6 +37,7 @@ client.on(Events.InteractionCreate, (interaction) => {
     case SlashCommands.STATS:
       // @ts-ignore
       interaction.reply("Stats!");
+      break;
     default:
       break;
   }

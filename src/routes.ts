@@ -1,6 +1,4 @@
 import { Express, Request, Response } from "express";
-import axios from "axios";
-import config from "./config";
 
 function routes(app: Express) {
   /**
@@ -44,7 +42,7 @@ function routes(app: Express) {
 
   /**
    * @openapi
-   * /stats/:id:
+   * /stats/:playerName:
    *  get:
    *     tags:
    *     - Stats
@@ -52,8 +50,44 @@ function routes(app: Express) {
    *     responses:
    *       200:
    *         description: App is up and running
+   *     parameters:
+   *     - name: playerName
+   *     in: path
+   *     required: true
+   *     type: string
    */
-  app.post(`/stats/:id`, (req: Request, res: Response) => {});
+  app.post(`/stats/:playerName`, (req: Request, res: Response) => {});
+
+  /**
+   * @openapi
+   * /match:
+   *  get:
+   *     tags:
+   *     - Match
+   *     description: Responds match details of a specific match
+   *     responses:
+   *       200:
+   *         description: App is up and running
+   */
+  app.post(`/match`, (req: Request, res: Response) => {});
+
+  /**
+   * @openapi
+   * /ranked/:playerId:
+   *  get:
+   *     tags:
+   *     - Ranked
+   *     description: Responds match details of a specific match
+   *     responses:
+   *       200:
+   *         description: App is up and running
+   *     parameters:
+   *     - name: playerId
+   *     in: path
+   *     required: true
+   *     type: string
+   */
+  app.post(`/ranked/:playerId`, (req: Request, res: Response) => {});
 }
 
 export { routes };

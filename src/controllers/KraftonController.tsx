@@ -5,30 +5,55 @@ import config from "src/config.ts";
 import { kraftonEndpoints } from "src/models/enums/kraftonEndpoints.ts";
 import { get } from "src/middleware/kraftonProvider.ts";
 import { formatString } from "src/utils/formatString.ts";
+import { playerData } from "src/__mocks__/playerData.ts";
 
-// app.get("/stats", async (req: Request, res: Response) => {
-//     try {
-//         const response: AxiosResponse = await axios.get(
-//           config.KRAFTON_BASE_URL +
-//             formatString(kraftonEndpoints.getPlayerData, ["bergetspung"]),
-//           {
-//             headers: {
-//               Authorization: `Bearer ${process.env.KRAFTON_API_KEY}`,
-//               Accept: "application/vnd.api+json",
-//             },
-//           }
-//         );
-//         console.log(config.KRAFTON_BASE_URL);
-//         console.log(response.data);
-//         res.status(200).send(response.data);
-//       } catch (err) {
-//         console.error(err);
-//         res.status(500).send({ errorMessage: "Something wrong" });
-//       }
-// });
+app.get("/stats", async (req: Request, res: Response) => {
+  try {
+    const response: AxiosResponse = await axios.get(
+      config.KRAFTON_BASE_URL +
+        formatString(kraftonEndpoints.getPlayerData, ["bergetspung"]),
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.KRAFTON_API_KEY}`,
+          Accept: "application/vnd.api+json",
+        },
+      }
+    );
 
-app.get(`/stats/:id`, (req: Request, res: Response) => {
-  const { id } = req.params;
-  //   const { stats } = req.body;
-  get({ url: kraftonEndpoints.getPlayerData, args: ["bergetspung"] });
+    res.status(200).send(response.data);
+  } catch (err) {
+    res.status(500).send({ errorMessage: "Something wrong" });
+  }
+});
+
+app.get(`/stats/:playerName`, async (req: Request, res: Response) => {
+  const { playerName = "bergetspung" } = req.params;
+
+  const response = await get({
+    url: kraftonEndpoints.getPlayerData,
+    args: [playerName],
+  });
+  
+  res.status(200).send(response);
+});
+
+app.get(`/match`, async (req: Request, res: Response) => {
+  const { id = playerData.data[0].relationships.matches.data[0].id } =
+    req.params;
+
+  const response = await get({ url: kraftonEndpoints.getMatch, args: [id] });
+
+  res.status(200).send(response);
+});
+
+app.get(`/ranked/:playerId`, async (req: Request, res: Response) => {
+  const { playerId = playerData.data[0].relationships.matches.data[0].id } =
+    req.params;
+
+  const response = await get({
+    url: kraftonEndpoints.getPlayerRankedStats,
+    args: ["steam", "33", playerId],
+  });
+
+  res.status(200).send(response);
 });
