@@ -1,9 +1,11 @@
-import "../src/controllers/PokmonController.tsx"
-import "../src/controllers/KraftonController.tsx"
-import "../src/controllers/TestController.tsx"
+import "../src/controllers/PokmonController.tsx";
+import "../src/controllers/KraftonController.tsx";
+import "../src/controllers/TestController.tsx";
 import "dotenv/config";
 import { Client, Events, SlashCommandBuilder } from "discord.js";
 import { SlashCommands } from "./models/enums/slashCommands.js";
+import { pubgProvider } from "./providers/pubgProvider.ts";
+import { playerType } from "./models/types/playerType.ts";
 
 const { token } = process.env;
 
@@ -26,7 +28,8 @@ client.once(Events.ClientReady, (c) => {
   }
 });
 
-client.on(Events.InteractionCreate, (interaction) => {
+client.on(Events.InteractionCreate, async (interaction) => {
+  const { getPlayerData } = pubgProvider();
   // @ts-ignore
   switch (interaction.commandName) {
     case SlashCommands.PING:
@@ -35,8 +38,11 @@ client.on(Events.InteractionCreate, (interaction) => {
       break;
 
     case SlashCommands.STATS:
+      const data: playerType = await getPlayerData("bergetspung");
       // @ts-ignore
-      interaction.reply("Stats!");
+      interaction.reply(
+        `Hello ${interaction.user.username}, total matches: ${data.data[0].relationships.matches.data.length}`
+      );
       break;
     default:
       break;

@@ -1,5 +1,5 @@
 export type playerType = {
-  data: any[];
+  data: pubgPlayer[];
   links: {
     self: string;
   };
@@ -22,9 +22,13 @@ export type pubgPlayer = {
     assets: {
       data: any[];
     };
+    matches: {
+      data: pubgMatch[];
+    };
   };
-  matches: {
-    data: pubgMatch[];
+  links: {
+    self: string;
+    schema: string;
   };
 };
 

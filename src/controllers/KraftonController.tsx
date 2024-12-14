@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import axios, { AxiosResponse } from "axios";
 import { app } from "../app.ts";
-import config from "src/config.ts";
+import config from "src/utils/config.ts";
 import { kraftonEndpoints } from "src/models/enums/kraftonEndpoints.ts";
 import { get } from "src/middleware/kraftonProvider.ts";
 import { formatString } from "src/utils/formatString.ts";
@@ -10,7 +10,7 @@ import { playerData } from "src/__mocks__/playerData.ts";
 app.get("/stats", async (req: Request, res: Response) => {
   try {
     const response: AxiosResponse = await axios.get(
-      config.KRAFTON_BASE_URL +
+      config.krafton.baseUrl +
         formatString(kraftonEndpoints.getPlayerData, ["bergetspung"]),
       {
         headers: {
@@ -33,7 +33,7 @@ app.get(`/stats/:playerName`, async (req: Request, res: Response) => {
     url: kraftonEndpoints.getPlayerData,
     args: [playerName],
   });
-  
+
   res.status(200).send(response);
 });
 
