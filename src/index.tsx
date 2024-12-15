@@ -6,6 +6,7 @@ import { Client, Events, SlashCommandBuilder } from "discord.js";
 import { SlashCommands } from "./models/enums/slashCommands.js";
 import { pubgProvider } from "./providers/pubgProvider.ts";
 import { playerType } from "./models/types/playerType.ts";
+import { pubgOperations } from "./operations/pubgOperations.ts";
 
 const { token } = process.env;
 
@@ -29,7 +30,7 @@ client.once(Events.ClientReady, (c) => {
 });
 
 client.on(Events.InteractionCreate, async (interaction) => {
-  const { getPlayerData } = pubgProvider();
+  const { getPubgPlayerRankedStats } = pubgOperations();
   // @ts-ignore
   switch (interaction.commandName) {
     case SlashCommands.PING:
@@ -38,10 +39,16 @@ client.on(Events.InteractionCreate, async (interaction) => {
       break;
 
     case SlashCommands.STATS:
-      const data: playerType = await getPlayerData("bergetspung");
+      const data = await getPubgPlayerRankedStats("bergetspung");
+      // @ts-ignore
+      // interaction.reply(
+      //   `Hello ${interaction.user.username}, total matches: ${
+      //     data ? data.data[0].relationships.matches.data.length : "unknown"
+      //   }`
+      // );
       // @ts-ignore
       interaction.reply(
-        `Hello ${interaction.user.username}, total matches: ${data.data[0].relationships.matches.data.length}`
+        `Hello ${interaction.user.username}`
       );
       break;
     default:

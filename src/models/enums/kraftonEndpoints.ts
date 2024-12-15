@@ -4,11 +4,10 @@ export enum kraftonEndpoints {
      */
     getPlayerData = "/players?filter[playerNames]={0}",
     /**
-     * {0} - $platform
-     * {1} - $playerId
-     * {2} - $seasonId
+     * {0} - $playerId
+     * {1} - $seasonId
      */
-    getPlayerRankedStats = "/{0}/players/{1}/seasons/{2}/ranked",
+    getPlayerRankedStats = "/players/{1}/seasons/{2}/ranked",
     /**
      * {0} - $matchId
      */

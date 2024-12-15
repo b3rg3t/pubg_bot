@@ -1,4 +1,6 @@
-const seasonsData = {
+import { seasonType } from "src/models/types/seasonType";
+
+const seasonsData: seasonType = {
   data: [
     {
       type: "season",

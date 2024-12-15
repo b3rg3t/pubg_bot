@@ -3,9 +3,9 @@ import config from "src/utils/config";
 import { kraftonUrl } from "src/models/types/kraftonUrl";
 import { formatString } from "src/utils/formatString";
 
-const get = async (enpoint: kraftonUrl) => {
+const get = async <T>(enpoint: kraftonUrl) => {
   try {
-    const response: AxiosResponse = await axios.get(
+    const response: AxiosResponse<T> = await axios.get(
       config.krafton.baseUrl +
         formatString(enpoint.url, "args" in enpoint ? enpoint.args : undefined),
       {
