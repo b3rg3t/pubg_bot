@@ -1,5 +1,10 @@
 import { playerRankedStatsType } from "src/models/types/playerRankedStatsType";
-import { calculateKD, calculateKDA, formatToPercentage } from "src/utils/helpers";
+import {
+  calculateAvgDamage,
+  calculateKD,
+  calculateKDA,
+  formatToPercentage,
+} from "src/utils/helpers";
 
 const rankedResponse = (
   playerRankedStats: playerRankedStatsType,
@@ -14,9 +19,8 @@ const rankedResponse = (
     currentTier,
     assists,
     roundsPlayed,
+    damageDealt,
   } = playerRankedStats.data.attributes.rankedGameModeStats["squad-fpp"];
-
-
 
   const message = {
     header: `Stats ${playerName}`,
@@ -25,6 +29,7 @@ const rankedResponse = (
       `Rank points: ${currentRankPoint}`,
       `KD: ${calculateKD(kills, deaths)}`,
       `KDA: ${calculateKDA(kills, deaths, assists)}`,
+      `AVG damage: ${calculateAvgDamage(roundsPlayed, damageDealt)}`,
       `Matches: ${roundsPlayed}`,
       `Total kills: ${kills}`,
       `Total deaths: ${deaths}`,
@@ -41,9 +46,7 @@ const rankedResponse = (
     `;
   };
 
-  const responseMessage = renderMessage();
-
-  return responseMessage;
+  return renderMessage();
 };
 
 export { rankedResponse };

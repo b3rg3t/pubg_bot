@@ -6,6 +6,10 @@ const calculateKDA = (kills: number, deaths: number, assists: number) => {
   return formatToFixedTwo((kills + assists) / deaths);
 };
 
+const calculateAvgDamage = (matches: number, damageDealt: number) => {
+  return (damageDealt / matches).toFixed(0);
+};
+
 const formatToPercentage = (value: number) => {
   let percentage = value * 100; // Convert to percentage
   return percentage.toFixed(2) + "%"; // Format to two decimal places
@@ -28,4 +32,5 @@ export {
   formatToPercentage,
   formatToFixedTwo,
   formatString,
+  calculateAvgDamage,
 };
