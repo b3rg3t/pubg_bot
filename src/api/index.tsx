@@ -6,6 +6,7 @@ import { Client, Events, SlashCommandBuilder } from "discord.js";
 import { SlashCommands } from "../models/enums/slashCommands.js";
 import { pubgOperations } from "../operations/pubgOperations.ts";
 import { rankedResponse } from "../responses/rankedResponse.ts";
+import { matchResponse } from "src/responses/matchResponse.ts";
 
 const { token } = process.env;
 
@@ -28,14 +29,26 @@ client.once(Events.ClientReady, (c) => {
         .setRequired(true)
     );
 
+  const matches = new SlashCommandBuilder()
+    .setName("match")
+    .setDescription("Get match stats for player")
+    .addStringOption((option) =>
+      option
+        .setName("player")
+        .setDescription("Get match stats of $player")
+        .setRequired(true)
+    );
+
   if (client.application) {
     client.application.commands.create(ping);
     client.application.commands.create(stats);
+    client.application.commands.create(matches);
   }
 });
 
 client.on(Events.InteractionCreate, async (interaction) => {
-  const { getPubgPlayerRankedStats } = pubgOperations();
+  const { getPubgPlayerRankedStats, getPubgLatestMatchStats } =
+    pubgOperations();
   // @ts-ignore
   switch (interaction.commandName) {
     case SlashCommands.PING:
@@ -44,26 +57,33 @@ client.on(Events.InteractionCreate, async (interaction) => {
       break;
 
     case SlashCommands.STATS:
-      const data = await getPubgPlayerRankedStats(
+      const playerData = await getPubgPlayerRankedStats(
         // @ts-ignore
         interaction.options._hoistedOptions[0].value
       );
 
-      const message = rankedResponse(
+      const rankedMessage = rankedResponse(
         // @ts-ignore
-        data,
+        playerData,
         // @ts-ignore
         interaction.options._hoistedOptions[0].value
       );
       // @ts-ignore
-      // interaction.reply(
-      //   `Hello ${interaction.user.username}, total matches: ${
-      //     data ? data.data[0].relationships.matches.data.length : "unknown"
-      //   }`
-      // );
-      // @ts-ignore
-      interaction.reply(message);
+      interaction.reply(rankedMessage);
       break;
+
+    case SlashCommands.MATCH:
+      const matchData = await getPubgLatestMatchStats(
+        // @ts-ignore
+        interaction.options._hoistedOptions[0].value
+      );
+
+      const matchMessage = matchResponse(
+        // @ts-ignore
+        matchData
+      );
+      // @ts-ignore
+      interaction.reply(matchMessage);
     default:
       break;
   }

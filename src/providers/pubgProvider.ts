@@ -3,6 +3,7 @@ import { get } from "../middleware/kraftonProvider";
 import { playerType } from "src/models/types/playerType";
 import { pubgSeason, seasonType } from "src/models/types/seasonType";
 import { playerRankedStatsType } from "src/models/types/playerRankedStatsType";
+import { matchType } from "src/models/types/matchType";
 
 const pubgProvider = () => {
   const getPlayerData = async (playerName: string) => {
@@ -13,10 +14,10 @@ const pubgProvider = () => {
     return response;
   };
 
-  const getMatch = async (playerName: string) => {
-    const response = await get({
-      url: kraftonEndpoints.getPlayerData,
-      args: [playerName],
+  const getMatch = async (matchId: string) => {
+    const response = await get<matchType>({
+      url: kraftonEndpoints.getMatch,
+      args: [matchId],
     });
     return response;
   };

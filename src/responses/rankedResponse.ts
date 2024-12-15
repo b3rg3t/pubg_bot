@@ -4,6 +4,7 @@ import {
   calculateKD,
   calculateKDA,
   formatToPercentage,
+  renderMessage,
 } from "src/utils/helpers";
 
 const rankedResponse = (
@@ -39,14 +40,7 @@ const rankedResponse = (
     ],
   };
 
-  const renderMessage = () => {
-    return `
-        ### ${message.header}
-        \`\`\`${message.messages.join("\n")}\`\`\`
-    `;
-  };
-
-  return renderMessage();
+  return renderMessage(message);
 };
 
 export { rankedResponse };

@@ -26,6 +26,13 @@ const formatString = (param: string, args?: string[]) => {
   return param;
 };
 
+const renderMessage = (message: { header: string; messages: string[] }) => {
+  return `
+      ### ${message.header}
+      \`\`\`${message.messages.join("\n")}\`\`\`
+  `;
+};
+
 export {
   calculateKD,
   calculateKDA,
@@ -33,4 +40,5 @@ export {
   formatToFixedTwo,
   formatString,
   calculateAvgDamage,
+  renderMessage,
 };

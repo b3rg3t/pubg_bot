@@ -1,3 +1,4 @@
+import { mapName } from "../enums/mapNames";
 import { matchAssetType } from "./matchAssetType";
 import { matchPlayerType } from "./matchPlayerType";
 import { matchTeamType } from "./matchTeamType";
@@ -16,7 +17,7 @@ export type matchType = {
       gameMode: string;
       titleId: string;
       tags: null;
-      mapName: string;
+      mapName: mapName;
       isCustomMatch: boolean;
     };
     relationships: {
