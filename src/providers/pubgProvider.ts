@@ -2,6 +2,7 @@ import { kraftonEndpoints } from "src/models/enums/kraftonEndpoints";
 import { get } from "../middleware/kraftonProvider";
 import { playerType } from "src/models/types/playerType";
 import { pubgSeason, seasonType } from "src/models/types/seasonType";
+import { playerRankedStatsType } from "src/models/types/playerRankedStatsType";
 
 const pubgProvider = () => {
   const getPlayerData = async (playerName: string) => {
@@ -24,9 +25,9 @@ const pubgProvider = () => {
     seasonId: pubgSeason["id"],
     playerId: string
   ) => {
-    const response = await get({
+    const response = await get<playerRankedStatsType>({
       url: kraftonEndpoints.getPlayerRankedStats,
-      args: ["steam", playerId, seasonId],
+      args: [playerId, seasonId],
     });
     return response;
   };

@@ -3,6 +3,6 @@ import { kraftonEndpoints } from "../enums/kraftonEndpoints";
 export type kraftonType = {
   [kraftonEndpoints.getMatch]: [string];
   [kraftonEndpoints.getPlayerData]: [string];
-  [kraftonEndpoints.getPlayerRankedStats]: [string, string, string];
-  [kraftonEndpoints.getSeasons]: undefined
+  [kraftonEndpoints.getPlayerRankedStats]: [string, string];
+  [kraftonEndpoints.getSeasons]: undefined;
 };

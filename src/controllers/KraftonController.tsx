@@ -53,7 +53,7 @@ app.get(`/ranked/:playerId`, async (req: Request, res: Response) => {
 
   const response = await get({
     url: kraftonEndpoints.getPlayerRankedStats,
-    args: ["steam", "33", playerId],
+    args: [ "33", playerId],
   });
 
   res.status(200).send(response);

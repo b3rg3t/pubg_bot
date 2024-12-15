@@ -7,7 +7,7 @@ export enum kraftonEndpoints {
      * {0} - $playerId
      * {1} - $seasonId
      */
-    getPlayerRankedStats = "/players/{1}/seasons/{2}/ranked",
+    getPlayerRankedStats = "/players/{0}/seasons/{1}/ranked",
     /**
      * {0} - $matchId
      */
