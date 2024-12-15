@@ -6,7 +6,8 @@ import { formatString } from "src/utils/formatString";
 const get = async (enpoint: kraftonUrl) => {
   try {
     const response: AxiosResponse = await axios.get(
-      config.krafton.baseUrl + formatString(enpoint.url, enpoint.args),
+      config.krafton.baseUrl +
+        formatString(enpoint.url, "args" in enpoint ? enpoint.args : undefined),
       {
         headers: {
           Authorization: `Bearer ${process.env.KRAFTON_API_KEY}`,

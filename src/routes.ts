@@ -88,6 +88,21 @@ function routes(app: Express) {
    *     type: string
    */
   app.post(`/ranked/:playerId`, (req: Request, res: Response) => {});
+
+  
+  /**
+   * @openapi
+   * /seasons:
+   *  get:
+   *     tags:
+   *     - Seasons
+   *     description: Responds seasons details
+   *     responses:
+   *       200:
+   *         description: App is up and running
+   */
+  app.post(`/seasons`, (req: Request, res: Response) => {});
+
 }
 
 export { routes };

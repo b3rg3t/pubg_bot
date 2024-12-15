@@ -4,4 +4,5 @@ export type kraftonType = {
   [kraftonEndpoints.getMatch]: [string];
   [kraftonEndpoints.getPlayerData]: [string];
   [kraftonEndpoints.getPlayerRankedStats]: [string, string, string];
+  [kraftonEndpoints.getSeasons]: undefined
 };

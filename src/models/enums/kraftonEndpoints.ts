@@ -12,5 +12,9 @@ export enum kraftonEndpoints {
     /**
      * {0} - $matchId
      */
-    getMatch = "/matches/{0}"
+    getMatch = "/matches/{0}",
+    /**
+     * @seasons - all season id's
+     */
+    getSeasons = "/seasons"
 }

@@ -57,3 +57,15 @@ app.get(`/ranked/:playerId`, async (req: Request, res: Response) => {
 
   res.status(200).send(response);
 });
+
+
+app.get(`/seasons`, async (req: Request, res: Response) => {
+  const { playerId = playerData.data[0].relationships.matches.data[0].id } =
+    req.params;
+
+  const response = await get({
+    url: kraftonEndpoints.getSeasons,
+  });
+
+  res.status(200).send(response);
+});
