@@ -1,5 +1,5 @@
 import { pubgProvider } from "src/providers/pubgProvider";
-import { findActiveSeasonId } from "src/utils/findActiveSeason";
+import { findActiveSeasonId } from "src/utils/pubg/findActiveSeason";
 
 const pubgOperations = () => {
   const { getSeasons, getPlayerRankedStats, getPlayerData } = pubgProvider();
