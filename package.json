@@ -1,13 +1,13 @@
 {
   "name": "pubg-bot",
   "version": "1.0.0-alpha",
-  "main": "src/index.tsx",
+  "main": "src/api/index.tsx",
   "type": "commonjs",
   "scripts": {
     "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "dev": "tsx watch src/index.tsx"
+    "build": "tsc build --output public",
+    "dev": "tsx watch src/api/index.tsx"
   },
   "keywords": [],
   "author": "",

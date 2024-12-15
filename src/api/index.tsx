@@ -1,11 +1,11 @@
-import "../src/controllers/PokmonController.tsx";
-import "../src/controllers/KraftonController.tsx";
-import "../src/controllers/TestController.tsx";
+import "../controllers/PokmonController.tsx";
+import "../controllers/KraftonController.tsx";
+import "../controllers/TestController.tsx";
 import "dotenv/config";
 import { Client, Events, SlashCommandBuilder } from "discord.js";
-import { SlashCommands } from "./models/enums/slashCommands.js";
-import { pubgOperations } from "./operations/pubgOperations.ts";
-import { rankedResponse } from "./responses/rankedResponse.ts";
+import { SlashCommands } from "../models/enums/slashCommands.js";
+import { pubgOperations } from "../operations/pubgOperations.ts";
+import { rankedResponse } from "../responses/rankedResponse.ts";
 
 const { token } = process.env;
 
