@@ -4,9 +4,9 @@ import { app } from "../app.ts";
 import config from "src/utils/config.ts";
 import { kraftonEndpoints } from "src/models/enums/kraftonEndpoints.ts";
 import { get } from "src/middleware/kraftonProvider.ts";
-import { formatString } from "src/utils/formatString.ts";
 import { playerData } from "src/__mocks__/playerData.ts";
 import { seasonType } from "src/models/types/seasonType.ts";
+import { formatString } from "src/utils/helpers.ts";
 
 app.get("/stats", async (req: Request, res: Response) => {
   try {
@@ -53,12 +53,11 @@ app.get(`/ranked/:playerId`, async (req: Request, res: Response) => {
 
   const response = await get({
     url: kraftonEndpoints.getPlayerRankedStats,
-    args: [ "33", playerId],
+    args: ["33", playerId],
   });
 
   res.status(200).send(response);
 });
-
 
 app.get(`/seasons`, async (req: Request, res: Response) => {
   const response: seasonType | undefined = await get({

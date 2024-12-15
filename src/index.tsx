@@ -4,9 +4,8 @@ import "../src/controllers/TestController.tsx";
 import "dotenv/config";
 import { Client, Events, SlashCommandBuilder } from "discord.js";
 import { SlashCommands } from "./models/enums/slashCommands.js";
-import { pubgProvider } from "./providers/pubgProvider.ts";
-import { playerType } from "./models/types/playerType.ts";
 import { pubgOperations } from "./operations/pubgOperations.ts";
+import { rankedResponse } from "./responses/rankedResponse.ts";
 
 const { token } = process.env;
 
@@ -21,7 +20,13 @@ client.once(Events.ClientReady, (c) => {
 
   const stats = new SlashCommandBuilder()
     .setName("stats")
-    .setDescription("Get stats for bergetspung");
+    .setDescription("Get stats for player")
+    .addStringOption((option) =>
+      option
+        .setName("player")
+        .setDescription("Get stats of $player")
+        .setRequired(true)
+    );
 
   if (client.application) {
     client.application.commands.create(ping);
@@ -39,7 +44,17 @@ client.on(Events.InteractionCreate, async (interaction) => {
       break;
 
     case SlashCommands.STATS:
-      const data = await getPubgPlayerRankedStats("bergetspung");
+      const data = await getPubgPlayerRankedStats(
+        // @ts-ignore
+        interaction.options._hoistedOptions[0].value
+      );
+
+      const message = rankedResponse(
+        // @ts-ignore
+        data,
+        // @ts-ignore
+        interaction.options._hoistedOptions[0].value
+      );
       // @ts-ignore
       // interaction.reply(
       //   `Hello ${interaction.user.username}, total matches: ${
@@ -47,9 +62,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
       //   }`
       // );
       // @ts-ignore
-      interaction.reply(
-        `Hello ${interaction.user.username}`
-      );
+      interaction.reply(message);
       break;
     default:
       break;

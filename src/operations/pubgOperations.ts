@@ -3,6 +3,7 @@ import { findActiveSeasonId } from "src/utils/findActiveSeason";
 
 const pubgOperations = () => {
   const { getSeasons, getPlayerRankedStats, getPlayerData } = pubgProvider();
+
   const getPubgPlayerRankedStats = async (playerName: string) => {
     const seasons = await getSeasons();
     const player = await getPlayerData(playerName);
@@ -19,6 +20,7 @@ const pubgOperations = () => {
       }
     }
   };
+  
   return { getPubgPlayerRankedStats };
 };
 
