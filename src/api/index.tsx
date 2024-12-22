@@ -78,12 +78,17 @@ client.on(Events.InteractionCreate, async (interaction) => {
         interaction.options._hoistedOptions[0].value
       );
 
-      const matchMessage = matchResponse(
+      if(matchData){
+        const matchMessage = matchResponse(
+          // @ts-ignore
+          matchData.teamStats,
+          matchData.matchStats,
+          matchData.playerName
+        );
         // @ts-ignore
-        matchData
-      );
-      // @ts-ignore
-      interaction.reply(matchMessage);
+        interaction.reply(matchMessage);
+      }
+
     default:
       break;
   }

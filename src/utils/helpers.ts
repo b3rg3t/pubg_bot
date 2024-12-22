@@ -33,6 +33,28 @@ const renderMessage = (message: { header: string; messages: string[] }) => {
   `;
 };
 
+const formatTime = (date: string) => {
+  return `${date.substring(0, 10)}, ${date.substring(11, 16)}`;
+};
+
+const formatSecToMinuAndSec = (time: number) => {
+  const minutes = Math.floor(time / 60);
+
+  const seconds = time - minutes * 60;
+
+  const hours = Math.floor(time / 3600);
+  time = time - hours * 3600;
+
+  function str_pad_left(string: number, pad: string, length: number) {
+    return (new Array(length + 1).join(pad) + string).slice(-length);
+  }
+
+  const finalTime =
+    str_pad_left(minutes, "0", 2) + ":" + str_pad_left(seconds, "0", 2);
+
+  return finalTime;
+};
+
 export {
   calculateKD,
   calculateKDA,
@@ -41,4 +63,6 @@ export {
   formatString,
   calculateAvgDamage,
   renderMessage,
+  formatTime,
+  formatSecToMinuAndSec
 };

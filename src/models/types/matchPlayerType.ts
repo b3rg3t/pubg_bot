@@ -1,4 +1,4 @@
-import { matchPartisipantEnum as matchParticipantEnum } from "../enums/matchParticipantEnum";
+import { matchIncludedType as matchParticipantEnum } from "../enums/matchIncludeType";
 
 export type matchPlayerType = {
   type: matchParticipantEnum;

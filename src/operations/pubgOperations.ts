@@ -1,6 +1,8 @@
 import { pubgProvider } from "src/providers/pubgProvider";
+import { matchResponse } from "src/responses/matchResponse";
 import { findActiveSeasonId } from "src/utils/pubg/findActiveSeason";
 import { findLatestMatchId } from "src/utils/pubg/findLatestMatch";
+import { findTeamStats } from "src/utils/pubg/findTeamStats";
 
 const pubgOperations = () => {
   const { getSeasons, getPlayerRankedStats, getPlayerData, getMatch } =
@@ -31,7 +33,15 @@ const pubgOperations = () => {
     const matchStats = await getMatch(matchId);
 
     if (player && matchId && matchStats) {
-      return matchStats;
+      const teamStats = findTeamStats(matchStats, player);
+
+      if (teamStats) {
+        return {
+          teamStats,
+          matchStats,
+          playerName: player.data[0].attributes.name,
+        };
+      }
     }
   };
 

@@ -1,8 +1,7 @@
-import { matchPartisipantEnum } from "../enums/matchParticipantEnum";
-import { matchPlayerType } from "./matchPlayerType";
+import { matchIncludedType } from "../enums/matchIncludeType";
 
 export type matchTeamType = {
-  type: string;
+  type: matchIncludedType;
   id: string;
   attributes: {
     stats: { rank: number; teamId: number };

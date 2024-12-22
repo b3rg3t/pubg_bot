@@ -1,7 +1,7 @@
-import { matchPartisipantEnum } from "../enums/matchParticipantEnum";
+import { matchIncludedType } from "../enums/matchIncludeType";
 
 export type matchAssetType = {
-  type: matchPartisipantEnum;
+  type: matchIncludedType;
   id: string;
   attributes: {
     name: string;
