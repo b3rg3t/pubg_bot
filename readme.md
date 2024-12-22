@@ -1,4 +1,5 @@
 # Pubg bot for stats
 
-1. Create an .env file with `TOKEN=YOUR_DISCORD_BOT_TOKEN ` ``.
-2. Get token from discod [Developer portal](https://discord.com/developers/applications).
+1. Create an .env file from .env.example.
+2. Get token from [Discord developer portal](https://discord.com/developers/applications).
+3. Get token from [Krafton developer portal]([https://discord.com/developers/applications](https://developer.pubg.com/)).
