@@ -55,6 +55,15 @@ const formatSecToMinuAndSec = (time: number) => {
   return finalTime;
 };
 
+const formatDistance = (distance: number) => {
+  const km = distance / 1000;
+  return km.toFixed(2) + " km";
+};
+
+const addUnderlineToText = (characters: string) => {
+  return "^".repeat(characters.length);
+}
+
 export {
   calculateKD,
   calculateKDA,
@@ -64,5 +73,7 @@ export {
   calculateAvgDamage,
   renderMessage,
   formatTime,
-  formatSecToMinuAndSec
+  formatSecToMinuAndSec,
+  formatDistance,
+  addUnderlineToText
 };

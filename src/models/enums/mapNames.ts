@@ -1,10 +1,13 @@
 export enum mapName {
-  Taego = "Baltic_Main",
+  Erangel_Remastered = "Baltic_Main",
   Miramar = "Desert_Main",
-  Deston = "DihorOtok_Main",
-  Erangel = "Erangel_Main",
-  Blubb = "Range_Main",
-  Blobb = "Savage_Main",
-  Blabb = "Summerland_Main",
-  Blibb = "Kiki_Main"
+  Vikendi = "DihorOtok_Main",
+  Erangel_Main = "Erangel_Main",
+  Haven = "Haven",
+  Camp_Jackal = "Range_Main",
+  Sanhok = "Savage_Main",
+  Karakin = "Summerland_Main",
+  Deston = "Kiki_Main",
+  Rondo = "Neon_Main",
+  Taego = "Tiger_Main",
 }
