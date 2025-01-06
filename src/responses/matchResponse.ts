@@ -36,7 +36,7 @@ export const matchResponse = (
     messages: [
       `Map: ${translateMap(attributes.mapName)}`,
       `Start time: ${formatTime(attributes.createdAt)}`,
-      `Total players: ${relationships.rosters.data.length}`,
+      `Total teams: ${relationships.rosters.data.length}`,
       `Duration: ${formatSecToMinuAndSec(attributes.duration)}`,
       `Placement: ${teamMatchStats.attributes.stats.rank}`,
       `Team members: ${playerStats.length}`,

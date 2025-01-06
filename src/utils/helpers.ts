@@ -1,3 +1,5 @@
+import { format } from "date-and-time";
+
 const calculateKD = (kills: number, deaths: number) => {
   return formatToFixedTwo(kills / deaths);
 };
@@ -33,8 +35,11 @@ const renderMessage = (message: { header: string; messages: string[] }) => {
   `;
 };
 
+/** Format ISO date to YYMMDD HH:MM */
 const formatTime = (date: string) => {
-  return `${date.substring(0, 10)}, ${date.substring(11, 16)}`;
+  const dateObj = new Date(date);
+
+  return format(dateObj, "YYYY-MM-DD HH:MM");
 };
 
 const formatSecToMinuAndSec = (time: number) => {
@@ -62,7 +67,7 @@ const formatDistance = (distance: number) => {
 
 const addUnderlineToText = (characters: string) => {
   return "^".repeat(characters.length);
-}
+};
 
 export {
   calculateKD,
@@ -75,5 +80,5 @@ export {
   formatTime,
   formatSecToMinuAndSec,
   formatDistance,
-  addUnderlineToText
+  addUnderlineToText,
 };
